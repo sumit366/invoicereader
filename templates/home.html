@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Reader</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style_file_upload.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{% static 'javascript/file_upload.js' %}"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Invoice reader</a>
+            </div>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active"><a href="#">sample</a></li>-->
+                <!--<li><a href="#">Upload</a></li>-->
+                <!--<li><a href="#">Contact</a></li>-->
+            <!--</ul>-->
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <label class="col-md-3 text-right" style="line-height: 2.5em;">Import invoice in sheets(.xls)</label>
+            <div class="col-xs-12 col-md-4 ">
+                <!-- image-preview-filename input [CUT FROM HERE]-->
+                <form name="invoice_upload" method="post" action="submit_invoice" enctype="multipart/form-data"> {% csrf_token %}
+                    <div class="input-group image-preview">
+
+                        <input type="text" class="form-control image-preview-filename"> <!-- don't give a name === doesn't send on POST/GET -->
+                        <span class="input-group-btn">
+                            <!-- image-preview-clear button -->
+                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                <span class="glyphicon glyphicon-remove"></span> Clear
+                            </button>
+                            <!-- image-preview-input -->
+                            <div class="btn btn-default image-preview-input">
+                                <span class="glyphicon glyphicon-folder-open"></span>
+                                <span class="image-preview-input-title">Choose File</span>
+                                <input id="invoice_xls" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="invoice_file"/> <!-- rename it -->
+                            </div>
+                        </span>
+                    </div><!-- /input-group image-preview [TO HERE]-->
+                    <button type="submit" class="help-block"><a href="#" class="label label-info"><span class="glyphicon glyphicon-file"></span> Upload File</a></button>
+                </form>
+            </div>
+            <div class="col-xs-12 col-md-3 ">
+                <!-- image-preview-filename input [CUT FROM HERE]-->
+                <div class="input-group">
+                    <a href="samplesheet" > <span class="glyphicon glyphicon-download"></span> Download Sample File </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
